@@ -29,7 +29,7 @@ This project performs an in-depth analysis of financial loan data to uncover pat
 
 - **Source**: `financial_loan.csv`
 - **Description**: Contains loan application data including borrower information, loan amounts, interest rates, income levels, and approval status
-- **Key Features**: Loan amount, income, age, loan status, interest rate, loan purpose, employment type
+- **Key Features**: Loan amount, income, application type, loan status, interest rate, loan date, employment type
 
 ## 🛠️ Technologies Used
 
