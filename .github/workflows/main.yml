@@ -1,0 +1,44 @@
+name: Financial Loan Portfolio CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  ci_cd:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pytest pandas
+
+    # ---- CI PART ----
+    - name: Run unit tests
+      run: |
+        pytest tests/
+
+    # ---- CD PART ----
+    - name: Run Loan Portfolio Analysis
+      run: |
+        python src/loan_analysis.py
+
+    - name: Validate Output Files
+      run: |
+        test -f output/loan_summary.csv
+
+    - name: Upload Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: loan-analysis-results
+        path: output/
